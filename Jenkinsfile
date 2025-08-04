@@ -34,10 +34,10 @@ pipeline {
         echo 'Deploying to Azure Function App...'
         dir('hello-function-app') {
             bat '''
-                mkdir publish
+                mkdir publish 2>nul
                 copy host.json publish\\
                 xcopy HttpHelloWorld publish\\HttpHelloWorld\\ /E /I /Y
-                powershell -Command "Compress-Archive -Path publish\\* -DestinationPath function.zip"
+                powershell -Command "Compress-Archive -Path publish\\* -DestinationPath function.zip -Force"
             '''
             bat 'az functionapp deployment source config-zip --resource-group azure-func-resource-rg --name my-function-app-denish --src function.zip'
         }
