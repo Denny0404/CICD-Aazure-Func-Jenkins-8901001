@@ -34,7 +34,7 @@ pipeline {
         echo 'Deploying to Azure Function App...'
         dir('hello-function-app') {
             bat '''
-            if exist function.zip del function.zip
+            if exist function.zip del function.zipbat 'powershell -Command "Compress-Archive -Path HttpHelloWorld -DestinationPath function.zip"'
             powershell -Command "Compress-Archive -Path * -DestinationPath function.zip"
             az login --service-principal -u %AZURE_CLIENT_ID% -p %AZURE_CLIENT_SECRET% --tenant %AZURE_TENANT_ID%
             az functionapp deployment source config-zip --resource-group %AZURE_RG% --name %AZURE_FUNCTION_APP% --src function.zip
