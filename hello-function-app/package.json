@@ -1,0 +1,16 @@
+{
+  "name": "azure-function-app",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/functions/HttpHelloWorld.js",
+  "scripts": {
+    "start": "func start",
+    "test": "jest"
+  },
+  "dependencies": {
+    "@azure/functions": "^4.0.0"
+  },
+  "devDependencies": {
+    "jest": "^29.0.0"
+  }
+}
