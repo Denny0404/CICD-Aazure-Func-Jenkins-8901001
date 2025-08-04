@@ -1,4 +1,4 @@
-const handler = require('../src/functions/HttpHelloWorld');
+const handler = require('../HttpHelloWorld/index.js');
 
 describe('HttpHelloWorld Function', () => {
   it('should return Hello, world! when no name is passed', async () => {
