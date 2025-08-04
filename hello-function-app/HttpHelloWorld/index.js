@@ -1,18 +1,12 @@
-// export the handler function separately
-async function httpHelloHandler(request, context) {
-    context.log(`Http function processed request for url "${request.url}"`);
+module.exports = async function (context, req) {
+    context.log('HTTP trigger function processed a request.');
+    const name = (req.query.name || (req.body && req.body.name));
+    const responseMessage = name
+        ? "Hello, " + name + ". This HTTP triggered function executed successfully."
+        : "This HTTP triggered function executed successfully. Pass a name in the query string or in the request body.";
 
-    const name = request.query.get('name') || await request.text() || 'world';
-    return { body: `Hello, ${name}!` };
+    context.res = {
+        status: 200,
+        body: responseMessage
+    };
 }
-
-// Required by Azure Function runtime
-const { app } = require('@azure/functions');
-app.http('HttpHelloWorld', {
-    methods: ['GET', 'POST'],
-    authLevel: 'anonymous',
-    handler: httpHelloHandler
-});
-
-// Export handler for testing
-module.exports = httpHelloHandler;
