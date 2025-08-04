@@ -18,25 +18,25 @@ pipeline {
     stage('Build') {
       steps {
         echo 'Installing dependencies...'
-        sh 'npm install'
+        bat 'npm install'
       }
     }
 
     stage('Test') {
       steps {
-        echo 'Running unit tests...'
-        sh 'npm test'
+        echo 'Running tests...'
+        bat 'npm test'
       }
     }
 
     stage('Deploy') {
       steps {
-        echo 'Deploying function to Azure...'
-        sh """
-          zip -r function.zip .
-          az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID
-          az account set --subscription $AZURE_SUBSCRIPTION_ID
-          az functionapp deployment source config-zip --resource-group $RESOURCE_GROUP --name $FUNCTION_APP_NAME --src function.zip
+        echo 'Deploying to Azure...'
+        bat """
+          powershell -Command "Compress-Archive -Path * -DestinationPath function.zip"
+          az login --service-principal -u %AZURE_CLIENT_ID% -p %AZURE_CLIENT_SECRET% --tenant %AZURE_TENANT_ID%
+          az account set --subscription %AZURE_SUBSCRIPTION_ID%
+          az functionapp deployment source config-zip --resource-group %RESOURCE_GROUP% --name %FUNCTION_APP_NAME% --src function.zip
         """
       }
     }
