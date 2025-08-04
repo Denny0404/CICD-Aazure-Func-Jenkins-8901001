@@ -9,6 +9,7 @@ pipeline {
     RESOURCE_GROUP        = 'azure-func-resource-rg'
     FUNCTION_APP_NAME     = 'my-function-app-denish'
   }
+  
   stages {
     stage('Build') {
       steps {
@@ -42,3 +43,4 @@ pipeline {
       }
     }
   }
+}
