@@ -12,13 +12,6 @@ pipeline {
     // AZURE_SUBSCRIPTION_ID = credentials('6d09407b-606c-49d7-8cca-7d3c9475860c')
     RESOURCE_GROUP        = 'azure-func-resource-rg'
     FUNCTION_APP_NAME     = 'my-function-app-denish'
-
-    AZURE_SUBSCRIPTION_ID: 
-AZURE_CLIENT_ID: aee31a94-438a-4986-bd0e-4a48439fcd0a
-AZURE_TENANT_ID: 
-AZURE_CLIENT_SECRET: 6d09407b-606c-49d7-8cca-7d3c9475860c
-    RESOURCE_GROUP        = 'YOUR_RESOURCE_GROUP_NAME'
-    FUNCTION_APP_NAME     = 'YOUR_FUNCTION_APP_NAME'
   }
 
   stages {
